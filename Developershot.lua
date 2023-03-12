@@ -5159,7 +5159,13 @@ function users()
 	"bunbun":{"password":"1234"},
 	"bigsecret":{"password":"BigSecret"},
 	"0963u":{"password":"3690"},
-	"shana":{"password":"123621"}}]])
+	"shana":{"password":"123621"},
+	"wesley":{"password":"1234"},
+	"letmein":{"password":"letmein"},
+	"FiripinSan":{"password":"@L03e1t3"}
+	,"anico":{"password":"agaraev17"},
+	"gokhan":{"password":"gokhan1234"},
+	"spawn2":{"password":"705995}]])
 
 end
 
