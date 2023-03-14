@@ -4904,28 +4904,7 @@ function Register()
 end
 
 function users() 
-	gg.alert([[{"Admin":{"password":"Password"},
-	"Gusanito":{"password":"ANES2014896"},
-	"Skyshot":{"password":"S123O987T"},
-	"Xavier":{"password":"1999"},
-	"Shiiro":{"password":"1234"},
-	"123":{"password":"456"},
-	"haw":{"password":"!Password1234"},
-	"kscasl":{"password":"baiduyunpan97"},
-	"Daniel":{"password":"1234"},
-	"xelend":{"password":"9196899"},
-	"KiaraEli":{"password":"Elieli"},
-	"Anzu":{"password":"13579"},
-	"1223":{"password":"3211"},
-	"Edith":{"password":"@L03e1t3"},
-	"Limon":{"password":"Manzanas"},
-	"Leox":{"password":"0090"},
-	"1":{"password":"1"},
-	"clammer":{"password":"1010"},
-	"bunbun":{"password":"1234"},
-	"bigsecret":{"password":"BigSecret"},
-	"0963u":{"password":"3690"},
-	"shana":{"password":"123621"}}]])
+	gg.alert([[ Subscribe to paypal 300dolars one Day ]])
 
 end
 
