@@ -1645,6 +1645,7 @@ posits = {
 	{map='Dawn',name='Isle Elder room',x=117.75272369384766,y=1.006047010421753,z=-1733.9976806640625},
 	{map='Dawn',name='Prophecy Cave',x=211.96453857421875,y=4.274348258972168,z=-63.84076690673828},
 	{map='Dawn',name='Temple',x=150.16748046875,y=102.43803405761719,z=-244.5251007080078},
+	{map='Dawn',name='Misterius point',x=-0.2243,y=1.0178,z=0.0087},
 	{map='DawnCave',name='Wind Pathes',x=-172.1148529044,y=352.74264526719,z=-375.6912841875},
 	{map='DawnCave',name='Water Trial',x=-90.0,y=245.0,z=-305.0},
 	{map='DawnCave',name='Earth Trial',x=-28.13365936279297,y=253.9242401123047,z=-372.3354797363281},
