@@ -1665,6 +1665,7 @@ posits = {
 	{map='Prairie_Cave',name='Floating Columns',x=280.13323974375,y=191.76315307688,z=-90.30506134203}, 
 	{map='DayEnd',name='Forest',x=-128.55003356933594,y=106.04075622558594,z=41.26801681518555},
 	{map='DayEnd',name='Elder Room',x=-529.508544921875,y=8.83392333984375,z=-213.78453063964844},
+	{map='DayHubCave',name='Chess mate',x=-40.2,y=34.3,z=17.0},
 	{map='DayHubCave',name='Exit',x=30.72627067565918,y=42.47455596923828,z=0.237472802400589},
     {map='Prairie_Island',name='Wind Paths',x=433.14529418531,y=270.46878051781,z=549.35540771438},
 	{map='Prairie_Island',name='Bird Nest',x=272.2238464355469,y=175.1832275390625,z=-26.06362915390625},
