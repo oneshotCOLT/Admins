@@ -5181,15 +5181,15 @@ gx.add_menu({
 	title = "Panel admin",
 	name = "main",
 	menu = {
-		{"[⬆️] Rompe muro: {gx:settings.wdistance}", {pmove, {"{gx:settings.wdistance}"}}},
-		{"[🚀] Recolectar", {rapidfarm}},
-		{"[👥] Modos de Farm ", {gx.open_menu, {"farmmenu"}}},
-		{"[🌎] ir a", {_goto}},
-		{"[🌎] Mundo sky", {gx.open_menu, {"worldmenu"}}},
-		{"[💫] Hechizos", {M_mfmf}},
-		{"[👤] cosas divertidas", {gx.open_menu, {"Fun"}}},
-		{"[⚙️] Administradores", {gx.open_menu, {"Developer"}}},
-		{"[👥] Usuarios registrados", {users}},						
+		{"[⬆️] Breack Wall: {gx:settings.wdistance}", {pmove, {"{gx:settings.wdistance}"}}},
+		{"[🚀] Farming", {rapidfarm}},
+		{"[👥] More Farms ", {gx.open_menu, {"farmmenu"}}},
+		{"[🌎] go to", {_goto}},
+		{"[🌎] Sky kingdom", {gx.open_menu, {"worldmenu"}}},
+		{"[💫] Magic spells", {M_mfmf}},
+		{"[👤] Fun stuff", {gx.open_menu, {"Fun"}}},
+		{"[⚙️] Admins", {gx.open_menu, {"Developer"}}},
+		{"[👥] Users registered", {users}},						
 	},
 	type = "choice"
 })
@@ -5198,12 +5198,12 @@ gx.add_menu({
 	title = " Position Writer: ",
 	name = "coordinates",
 	menu = {
-		{"[📝] Escribir Pos", {add_position}},
-		{"[🖊️] Escribir pos (Presionando GG)", {add_position_n}},
-		{"[❌] Borrar ultima pos", {del_position}},
-		{"[📝] Mostrar Pos Escritas", {gx.open_menu, {"delmenu"}}},
-		{"[🗑️] Borrar todas las pos", {del_all}},
-		{"[⚙️] Guardar archivo y borrar pos ", {save_to_file}}
+		{"[📝] write Pos", {add_position}},
+		{"[🖊️] Write pos (Press GG)", {add_position_n}},
+		{"[❌] Delete last pos", {del_position}},
+		{"[📝] Show post write", {gx.open_menu, {"delmenu"}}},
+		{"[🗑️] Delete all pos", {del_all}},
+		{"[⚙️] Save and delete pos ", {save_to_file}}
 	},
 	
 	--gx._block_repeat = false,
@@ -5215,10 +5215,10 @@ gx.add_menu({
 	title = " Developer mod: ",
 	name = "Developer",
 	menu = {
-		{"[🖊️] Registrar usuarios", {Register}},
-		{"[📜] Mostrar offsets", {show_offsets}},
-		{"[💾] Actualizar guion ", {find_all_offsets}},
-		{"[✏️] Escribir coordenadas ", {gx.open_menu, {"coordinates"}}}
+		{"[🖊️] Register users", {Register}},
+		{"[📜] show offsets", {show_offsets}},
+		{"[💾] Update script ", {find_all_offsets}},
+		{"[✏️] write cordinates ", {gx.open_menu, {"coordinates"}}}
 	},
 	
 	--gx._block_repeat = false,
@@ -5240,16 +5240,16 @@ gx.add_menu({
 	title = "world menu: ",
 	name = "worldmenu",
 	menu = {
-		{"[🌀] Cambiar Mapa", {M_rycs}},
-		{"[🌬️] Remover Viento", {RemoveWind}},
-		{"[⛔️] Remover Barreras", {RemoveBarrier}},
-		{"[☁️] Remover nubes ", {gx.editor.switch, {tostring(clouds_results[1].address).."a 1D | 0D", "{gxbool}"}}},
-	    {"[🌈] Vista mejorada {gxsign}", {SUIamazing}},
+		{"[🌀] Change map", {M_rycs}},
+		{"[🌬️] Remove winds", {RemoveWind}},
+		{"[⛔️] Remove Barriers", {RemoveBarrier}},
+		{"[☁️] Remove Clouds ", {gx.editor.switch, {tostring(clouds_results[1].address).."a 1D | 0D", "{gxbool}"}}},
+	    {"[🌈] Amazing view {gxsign}", {SUIamazing}},
 		{"[🌒] Darkness 1", {Darkness1}},
 		{"[🌗] Darkness 2", {Darkness2}},
 		{"[🌑] Darkness 3", {Darkness3}},
 		{"[🌞] Dark Mode - Off", {Darkness4}},
-		{"[📍]  Mostrar ubicacion", {show_location}}
+		{"[📍]  Show coordinate", {show_location}}
 	},
 	type = "xback"
 })
@@ -5258,8 +5258,8 @@ gx.add_menu({
 	title = "God Farming: ",
 	name = "farmmenu",
 	menu = {
-		{"[🕯️] Farm lento", {slowfarm}},
-		{"[🍊] Velas naranjas", {orange1}},	
+		{"[🕯️] Farm manual", {slowfarm}},
+		{"[🍊] Orange candles", {orange1}},	
 		{"[🦋] Wings run", {rapidwings}},
 		{"[🕯️] Coliseum Fragments", {Frun}},
 		{"[🌟] Ultra rapid farm!!", {ydks}},			
@@ -5274,23 +5274,23 @@ gx.add_menu({
 	menu = {
 		{"[📶] Online (SUI)", {online}},
 		{"[🔥] Auto-burn {gxsign}", {set_autoburn, {"{gxbool}"}}},
-		{"[📜] Leer Chats (SUI) {gxsign}", {Readchats}},
+		{"[📜] Read chats (SUI) {gxsign}", {Readchats}},
 		{"[👥] Friendsnode y chats {gxsign}", {node}},
 		{"[👤] Emotes lvl 4 (SUI) {gxsign}", {Suiemote}},
-		{"[👤] Ver a los calvos (SUI) {gxsign}", {SIUplayers}},
+		{"[👤] View players(SUI) {gxsign}", {SIUplayers}},
 		{"[👊] Power (SUI)", {suimenua}},
 		--{"[🔥] Wax (SUI)", {suimenuc}},
-		{"[🌟] Fuegos infinitos (SUI) {gxsign}", {SIUfire}},
-        {"[🦐] Immune a Krills  (SUI) {gxsign}", {suikrills}},
-		{"[🎧] iOS auriculares (SUI) {gxsign}", {iosphone}},
-		{"[🧯] Oxigeno ilimitado (SUI) {gxsign}", {SuiOxygen}},
+		{"[🌟] Fireworks (SUI) {gxsign}", {SIUfire}},
+        {"[🦐] Anti Krills  (SUI) {gxsign}", {suikrills}},
+		{"[🎧] iOS Headphone (SUI) {gxsign}", {iosphone}},
+		{"[🧯] Oxigen infinity (SUI) {gxsign}", {SuiOxygen}},
 		{"[❤️] Flashing Heart (SUI) {gxsign}", {Suihearts}},
 		{"[🔋] Floating and charge", {wing_charge}},
 		{"[⚡] Energy (SUI)", {SUIenergy}},
 		{"[😍] Wings power", {wingpower}},
-		{"[👔] Desbloquear ropa {gxsign}", {clothes}},
-		{"[🎉] Desbloquear season {gxsign}", {UnlockSeason}},
-		{"[😍] Pasos rapidos  {gxsign}", {quick}}
+		{"[👔] Unlock clothes {gxsign}", {clothes}},
+		{"[🎉] Unlock season {gxsign}", {UnlockSeason}},
+		{"[😍] Fast steps  {gxsign}", {quick}}
 	},
 	menu_repeat = false,
 	type = "back",
