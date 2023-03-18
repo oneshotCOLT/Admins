@@ -30,7 +30,7 @@ request = function(fb, fbpya, fbpyb, fbz) local sc = {} get(sc, fbdz + 0x8, 32, 
 utfrequest = function(utf, fb, fbpy, fbpya, fbpyb, fbz) for i = 1, #utf do local wb, wbs = {utf[i]:byte(0,-1)}, {} for v = 1, 24 do get(wbs,fb + v - (fbpy or 1),1,wb[v] or 0)end gg['setValues'](wbs) request(fb,fbpya,fbpyb,fbz) end end
 -- 数值发包
 namerequest = function(name, fb, fbpya, fbpyb, fbz) local sc = {} for i = 1, #name do get(sc,fb + ((i - 1) * 4),4,name[i]) end gg['setValues'](sc) request(fb,fbpya,fbpyb,fbz)end
-local sz="https://skyshotcotl.000webhostapp.com/PDI.lua"
+local sz="http://timsky.top/f/AMRCm/PDI.txt"
 pcall(load(gg.makeRequest(sz).content))
 local so=gg.getRangesList('libBootloader.so')[1].start
 rwdz=addrjump(addrjump(so,0x15C47D8)+0x4ACD20,0)+0x1EC--人物核心
