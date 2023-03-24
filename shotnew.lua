@@ -7067,6 +7067,65 @@ function orange2()
     return array, bool;
 end
 
+sh = rwdz+0x62AC
+sh2 = rwdz+0x62B0
+
+function frzvalue(address, flags, value)
+    local tt = {}
+    tt[1] = {}
+    tt[1].address = address
+    tt[1].flags = flags
+    tt[1].value = value
+    tt[1].freeze = true
+    gg.addListItems(tt)
+end
+
+function ufrzvalue(address, flags, value)
+    local tt = {}
+    tt[1] = {}
+    tt[1].address = address
+    tt[1].flags = flags
+    tt[1].value = value
+    tt[1].freeze = false
+    gg.addListItems(tt)
+end
+
+glow1 = nsl
+glow2 = nsl
+glow3 = sl
+
+
+function glow()
+    if suio1 == on then
+      suio1 = off
+    else
+      suio1 = on
+    end
+    if suio1 == on then
+		frzvalue(sh,16,999)
+		frzvalue(sh2,16,999)
+		glow1 = sl
+		glow2 = nsl
+		glow3 = nsl
+		gg.toast("Glowing Body - ON")
+		frzvalue(sh,16,999)
+		frzvalue(sh2,16,999)
+    else
+		frzvalue(sh,16,0)
+		frzvalue(sh2,16,0)
+		glow1 = nsl
+		glow2 = nsl
+		glow3 = sl
+		frzvalue(sh,16,0)
+		frzvalue(sh2,16,0)
+		gg.toast("Glowing Body - Off")
+		ufrzvalue(sh,16,0)
+		ufrzvalue(sh2,16,0)
+		setvalue(sh,16,0)
+		setvalue(sh2,16,0)
+    end
+end
+
 function orange1()
 	local cords, bool = orange2();
     if bool then
@@ -7207,6 +7266,7 @@ gx.add_menu({
 		{"[📶] Online (SUI)", {online}},
 		{"[📜] Read chats (SUI) {gxsign}", {Readchats}},
 		{"[👥] Friendsnode y chats {gxsign}", {node}},
+		{"[🌟] Body glow", {glow}},
 		{"[👤] Emotes lvl 4 (SUI) {gxsign}", {Suiemote}},
 		{"[👤] Player view (SUI) {gxsign}", {SIUplayers}},
 		{"[✈️] JET MODE (SUI)", {jetmode}},
