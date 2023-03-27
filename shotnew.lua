@@ -1128,6 +1128,7 @@ Magic_id = {-- magic id
 	{'👖pants spells',
 		{
         {"New Pants",483128979},
+	{ 'NEW NEW PANTS', -105193858 },
         {'Aurora pants', -1134828593 },
         { 'Snowman body', -1535254839 },
         { 'runaway pants', 3160138703 },
