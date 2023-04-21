@@ -7446,9 +7446,6 @@ function orange2()
     return array, bool;
 end
 
-sh = addr + 407040
-sh2 = addr + 407044
-
 glow1 = nsl
 glow2 = nsl
 glow3 = sl
