@@ -103,14 +103,13 @@ function seaio1(t,a,b,c,d)
 end
 
 offsets = {
-	ptoplayer = 0x172F4C8,
+	ptoplayer = 0x172F518,
 	pos_off = 0x4773B0, --pos_x
-	ptoentity = 0x1715790,
+	ptoentity = 0x17157E0,
 	ptonentity = 0x57CFEC,
-	curmap_off = -0x1715EAC,
+	curmap_off = -0x17157E0,
 	plants = 0xD4AFF8,
-	gamespeed_off = -0x1641774,
-	portal2_off = -0x46D50,
+	gamespeed_off = -0x1650CF4,
 	ssdz = 0x22E9DB0,
 	chat = 0x5BC25C,
 	magic = 0xffffffffed411384 ,
@@ -140,6 +139,7 @@ offsets = {
 	props_off = 0x45E104,
 	famount_off = 0x45E104 + 0x15D0,
 	portal_off = 0x40EB08,
+	portal2_off = -0x46D50,
 	vcandles = 0x4E62B4,
 	vcandles_dist = 0x70,
 	pchat = 0xB6B3725,
@@ -6537,69 +6537,522 @@ function setvalue(address, flags, value)
 	tt[1].value = value
 	gg.setValues(tt)
 end
+function frzvalue(address, flags, value)
+	local tt = {}
+	tt[1] = {}
+	tt[1].address = address
+	tt[1].flags = flags
+	tt[1].value = value
+	tt[1].freeze = true
+	gg.addListItems(tt)
+end
+function ufrzvalue(address, flags, value)
+	local tt = {}
+	tt[1] = {}
+	tt[1].address = address
+	tt[1].flags = flags
+	tt[1].value = value
+	tt[1].freeze = false
+	gg.addListItems(tt)
+end
+function setpos(x, y, z)
+	local t = {}
+	t[1] = {}
+	t[1].address = px
+	t[1].flags = 16
+	t[1].value = x
+	t[2] = {}
+	t[2].address = py
+	t[2].flags = 16
+	t[2].value = y
+	t[3] = {}
+	t[3].address = pz
+	t[3].flags = 16
+	t[3].value = z
+	gg.setValues(t)
+end
+function getv(a, f)
+	local t = {}
+	t[1] = {}
+	t[1].address = a
+	t[1].flags = f
+	t = gg.getValues(t)
+	al = t[1].value
+	gg.alert(al)
+	gg.copyText(al)
+end
+spn1 = " "
+spn2 = " "
+spn3 = " "
+local on = "● "
+local off = "○ "
+local sl = "◉ "
+local nsl = "○ "
 
-local on = "¦🧡¦"
-local off = "¦❌¦"
+local ont = "ON"
+local offt = "OFF"
+sui1 = cd
+suiv1 = off
+suiw1 = off
+suiw2 = off
 suiu1 = off
 suiu2 = off
 suiu3 = off
-
-suiwo1 = off
-suiwo2 = off
-suiwo3 = off
-
-suiv1 = off
-
-suiw1 = off
-
+suiu4 = off
+suiu5 = off
 suic1 = off
 suic2 = off
 suic3 = off
-
+suip1 = off
+suip2 = off
 suia1 = off
 suia2 = off
-
-suip1 = off
-
---suiwo1 = off
---suiwo2 = off
-
+suiwo1 = off
+suiwo2 = off
+suiwo3 = off
 suio1 = off
 suio2 = off
 suio3 = off
 suio4 = off
 suio5 = off
-
+suio6 = off
+suio7 = off
 suih1 = off
+suiem1 = nsl
+suiem2 = nsl
+suiem3 = sl
+suidm1 = nsl
+suidm2 = nsl
+suidm3 = nsl
+suidm4 = sl
+glow1 = nsl
+glow2 = nsl
+glow3 = sl
 
-sui1 = off
+--offsets sui
 
-function SUIenergy()
-	local suiwm = gg.choice({
+va = 4843048
+va_v = 1.192416902995319E-7
+em = 5791224
+dm = 8284852
+jm = 10530856
+cu = 4423384
+eu = 11653336
+eu_v = -1.832657726481557E-4
+fu = 9302916
+hq = 10220592
+bc = 7721784
+bp = 6975592
+bp_v = -1.8345301214139909E-4
+aw1 = 12916960
+aw2 = 20998692
+sof = 5844836
+sch = 6526064
+sj = 10568736
+fd = 10607792
+rw = 7678172
+rb = 6790380
+rc = 23179080
+qh = 9700316
+ih = 5806924
+uf = 9710428
+uo = 5788448
+ik1 = 5794336
+ik2 = 5794340
+fh = 5787580
+ais = 8682216
+
+so = gg.getRangesList("libBootloader.so")[1].start
+
+function get_va()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + va
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == -721215457 then
+	  suiv1 = on
+	end
+end
+function get_em()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + em
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505794560 then
+	  suiem1 = sl
+	  suiem2 = nsl
+	  suiem3 = nsl
+	end
+	if t[1].value == 506466304 then
+	  suiem1 = nsl
+	  suiem2 = sl
+	  suiem3 = nsl
+	end
+end
+function get_dm()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + dm
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 506073088 then
+	  suidm1 = sl
+	  suidm2 = nsl
+	  suidm3 = nsl
+	  suidm4 = nsl
+	end
+	if t[1].value == 505417729 then
+	  suidm1 = nsl
+	  suidm2 = sl
+	  suidm3 = nsl
+	  suidm4 = nsl
+	end
+	if t[1].value == 505794560 then
+	  suidm1 = nsl
+	  suidm2 = nsl
+	  suidm3 = sl
+	  suidm4 = nsl
+	end
+end
+function get_jm()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + jm
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 506761216 then
+	  suiw1 = on
+	end
+end
+function get_cu()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + cu
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 1384120352 then
+	  suiu1 = on
+	end
+end
+function get_eu()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + eu
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 1384120352 then
+	  suiu2 = on
+	end
+end
+function get_fu()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + fu
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 1384120352 then
+	  suiu3 = on
+	end
+end
+function get_hq()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + hq
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 335544341 then
+	  suiu4 = on
+	end
+end
+function get_bc()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + bc
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == -721215457 then
+	  suic1 = on
+	end
+end
+function get_bp()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + bp
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 706675691 then
+	  suic2 = on
+	end
+end
+function get_aw()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + aw1
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 506630144 then
+	  suic3 = on
+	end
+end
+function get_sof()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + sof
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505873376 then
+	  suip1 = on
+	end
+end
+function get_sch()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + sch
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 1384120352 then
+	  suip2 = on
+	end
+end
+function get_sj()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + sj
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505581568 then
+	  suia1 = on
+	end
+end
+function get_fd()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + fd
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505712640 then
+	  suia2 = on
+	end
+end
+function get_rw()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + rw
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505873376 then
+	  suiwo1 = on
+	end
+end
+function get_rb()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + rb
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == -721215457 then
+	  suiwo2 = on
+	end
+end
+function get_rc()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + rc
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 0 then
+	  suiwo3 = on
+	end
+end
+function get_ih()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + ih
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505712640 then
+	  suio1 = on
+	end
+end
+function get_uf()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + uf
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 822084938 then
+	  suio2 = on
+	end
+end
+function get_uo()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + uo
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505647104 then
+	  suio3 = on
+	end
+end
+function get_ik()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + ik1
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 1384120320 then
+	  suio4 = on
+	end
+end
+function get_fh()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + fh
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 505712640 then
+	  suio5 = on
+	end
+end
+function get_ais()
+	local t = {}
+	t[1] = {}
+	t[1].address = so + ais
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == -721215457 then
+	  sui1 = dcd
+	end
+end
+function get_sh()
+	local t = {}
+	t[1] = {}
+	t[1].address = sh
+	t[1].flags = gg.TYPE_DWORD
+	t = gg.getValues(t)
+	if t[1].value == 1148829696 then
+	  glow1 = sl
+	  glow2 = nsl
+	  glow3 = nsl
+	end
+	if t[1].value == 2139081118 then
+	  glow1 = nsl
+	  glow2 = sl
+	  glow3 = nsl
+	end
+end
+function setspf0()
+	frzvalue(mfdz + 144, 4, 0)
+	frzvalue(mfdz + 192, 4, 0)
+	frzvalue(mfdz + 240, 4, 0)
+end
+function setspf1()
+	setvalue(mfdz + 8, 4, -1600133292)
+	frzvalue(mfdz + 12, 4, 1600132692)
+	setvalue(mfdz + 16, 4, -1720562886)
+	setvalue(mfdz + 20, 4, -1806973714)
+	setvalue(mfdz + 24, 4, 1020395176)
+	setvalue(mfdz + 28, 4, 131004170)
+	setvalue(mfdz + 32, 4, 1)
+end
+function setspf2()
+	setvalue(mfdz + 56, 4, -1600133292)
+	frzvalue(mfdz + 60, 4, 1600132692)
+	setvalue(mfdz + 64, 4, -1720562886)
+	setvalue(mfdz + 68, 4, -1806973714)
+	setvalue(mfdz + 72, 4, 1020395176)
+	setvalue(mfdz + 76, 4, 131004170)
+	setvalue(mfdz + 80, 4, 1)
+end
+function setspf3()
+	setvalue(mfdz + 104, 4, -1600133292)
+	frzvalue(mfdz + 108, 4, 1600132692)
+	setvalue(mfdz + 112, 4, -1720562886)
+	setvalue(mfdz + 116, 4, -1806973714)
+	setvalue(mfdz + 120, 4, 1020395176)
+	setvalue(mfdz + 124, 4, 131004170)
+	setvalue(mfdz + 128, 4, 1)
+end
+function setsp1()
+	frzvalue(mfdz + 9824, 4, 3)
+	setvalue(mfdz + 8, 4, -1600133292)
+	frzvalue(mfdz + 12, 4, 1600132692)
+	setvalue(mfdz + 16, 4, -1720562886)
+	setvalue(mfdz + 20, 4, -1806973714)
+	setvalue(mfdz + 24, 4, 1020395176)
+	setvalue(mfdz + 28, 4, 131004170)
+	setvalue(mfdz + 32, 4, 1)
+	if su == frz then
+	  ufrzvalue(mfdz + 0, 4, 0)
+	  su = ufrz
+	end
+end
+function setsp2()
+	frzvalue(mfdz + 9824, 4, 3)
+	setvalue(mfdz + 56, 4, -1600133292)
+	frzvalue(mfdz + 60, 4, 1600132692)
+	setvalue(mfdz + 64, 4, -1720562886)
+	setvalue(mfdz + 68, 4, -1806973714)
+	setvalue(mfdz + 72, 4, 1020395176)
+	setvalue(mfdz + 76, 4, 131004170)
+	setvalue(mfdz + 80, 4, 1)
+	if su == frz then
+	  ufrzvalue(mfdz + 48, 4, 0)
+	  su = ufrz
+	end
+end
+function setsp3()
+	frzvalue(mfdz + 9824, 4, 3)
+	setvalue(mfdz + 104, 4, -1600133292)
+	frzvalue(mfdz + 108, 4, 1600132692)
+	setvalue(mfdz + 112, 4, -1720562886)
+	setvalue(mfdz + 116, 4, -1806973714)
+	setvalue(mfdz + 120, 4, 1020395176)
+	setvalue(mfdz + 124, 4, 131004170)
+	setvalue(mfdz + 128, 4, 1)
+	if su == frz then
+	  ufrzvalue(mfdz + 96, 4, 0)
+	  su = ufrz
+	end
+end
+
+function suimenuem()
+	pwr = gg.choice({
 		"Full",
 		"Empty",
 		"Normal"
-	}, nil, "Energy")
-	if suiwm == nil then
-	  elseif suiwm == 1 then
-		so = gg.getRangesList("libBootloader.so")[1].start
-        py = 5791224
-        setvalue(so + py, 16, 8.77804066E-21)
-        --gg.toast("Energy - Full")
-	end
-
-	if suiwm == 2 then
-		so = gg.getRangesList("libBootloader.so")[1].start
-		py = 5791224
-		setvalue(so + py, 16, 9.32067114E-21)
-		--gg.toast("Energy - Empty")
-	end
-
-	if suiwm == 3 then
-	  so = gg.getRangesList("libBootloader.so")[1].start
-      py = 5791224
-      setvalue(so + py, 16, 8.59771529E-21)
-      --gg.toast("Energy - Normal")
+	  },nil,'ENERGY MODDS')
+	if pwr == nil then
+	  noselect()
+	else
+	    if pwr == 1 then
+			setvalue(so + em, 16, 8.77804066E-21)
+			suiem1 = sl
+			suiem2 = nsl
+			suiem3 = nsl
+			gg.toast("Energy - Full")
+			setvalue(so + em, 16, 8.77804066E-21)
+	    else
+			if pwr == 2 then
+				setvalue(so + em, 16, 9.32067114E-21)
+		        suiem1 = nsl
+		        suiem2 = sl
+		        suiem3 = nsl
+		        gg.toast("Energy - Empty")
+		        setvalue(so + em, 16, 9.32067114E-21)
+			else
+				if pwr == 3 then
+					setvalue(so + em, 16, 8.59771529E-21)
+		            suiem1 = nsl
+		            suiem2 = nsl
+		            suiem3 = sl
+		            gg.toast("Energy - Normal")
+		            setvalue(so + em, 16, 8.59771529E-21)
+				end
+			end
+		end
 	end
 end
 
@@ -6612,44 +7065,54 @@ function SUIamazing()
 	  suiv1 = on
 	end
 	if suiv1 == on then
-	  so = gg.getRangesList("libBootloader.so")[1].start
-	  py = 4843048
-	  setvalue(so + py, 16, -9010873890000)
-	  --gg.toast("Enabled - Amazing View")
+		setvalue(so + va, 16, -9010873890000)
+		gg.toast("Enabled - Amazing View")
+		setvalue(so + va, 16, -9010873890000)
 	else
-	  so = gg.getRangesList("libBootloader.so")[1].start
-	  py = 4843048
-	  setvalue(so + py, 16, 1.19238962E-7)
-	  --gg.toast("Disabled - Amazing View")
+		setvalue(so + va, 16, va_v)
+		gg.toast("Disabled - Amazing View")
+		setvalue(so + va, 16, va_v)
 	end
 end
 
 function Darkness1()
-  so = gg.getRangesList("libBootloader.so")[1].start
-  py = 4843048
-  setvalue(so + py, 16, 9.00303379E-21)
-  --gg.toast("Dark Mode - Darkness 1")
+	setvalue(so + dm, 16, 9.00303379E-21)
+	suidm1 = sl
+	suidm2 = nsl
+	suidm3 = nsl
+	suidm4 = nsl
+	gg.toast("Dark Mode - Darkness 1")
+	setvalue(so + dm, 16, 9.00303379E-21)
 end
 
 function Darkness2()
-  so = gg.getRangesList("libBootloader.so")[1].start
-  py = 4843048
-  setvalue(so + py, 16, 8.473639E-21)
-  --gg.toast("Dark Mode - Darkness 2")
+	setvalue(so + dm, 16, 8.473639E-21)
+	suidm1 = nsl
+	suidm2 = sl
+	suidm3 = nsl
+	suidm4 = nsl
+	gg.toast("Dark Mode - Darkness 2")
+	setvalue(so + dm, 16, 8.473639E-21)
 end
 
 function Darkness3()
-  so = gg.getRangesList("libBootloader.so")[1].start
-  py = 4843048
-  setvalue(so + py, 16, 8.77804066E-21)
-  --gg.toast("Dark Mode - Darkness 3")
+	setvalue(so + dm, 16, 8.77804066E-21)
+	suidm1 = nsl
+	suidm2 = nsl
+	suidm3 = sl
+	suidm4 = nsl
+	gg.toast("Dark Mode - Darkness 3")
+	setvalue(so + dm, 16, 8.77804066E-21)
 end
 
 function Darkness4()
-  so = gg.getRangesList("libBootloader.so")[1].start
-  py = 4843048
-  setvalue(so + py, 16, -0.04794156924)
-  --gg.toast("Dark Mode - Off")
+	setvalue(so + dm, 16, -0.04794156924)
+	suidm1 = nsl
+	suidm2 = nsl
+	suidm3 = nsl
+	suidm4 = sl
+	gg.toast("Dark Mode - Off")
+	setvalue(so + dm, 16, -0.04794156924)
 end
 
 function SIUplayers()
@@ -6659,15 +7122,13 @@ function SIUplayers()
 		suip1 = on
 	end
 	if suip1 == on then
-		so = gg.getRangesList("libBootloader.so")[1].start
-		py = 5844836
-		setvalue(so + py, 16, 8.84170772E-21)
-		--gg.toast("Enabled - See Outfit")
+		setvalue(so + sof, 16, 8.84170772E-21)
+        gg.toast("Enabled - See Outfit")
+        setvalue(so + sof, 16, 8.84170772E-21)
 	else
-		so = gg.getRangesList("libBootloader.so")[1].start
-		py = 5844836
-		setvalue(so + py, 16, 8.71186783E-21)
-		--gg.toast("Disabled - See Outfit")
+		setvalue(so + sof, 16, 8.71186783E-21)
+        gg.toast("Disabled - See Outfit")
+        setvalue(so + sof, 16, 8.71186783E-21)
 	end
 end
 
@@ -6678,83 +7139,82 @@ function online()
       sui1 = on
     end
     if sui1 == on then
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 8682216
-      setvalue(so + py, 16, -9010873890000)
-      --gg.toast("Offline")
+		--sui1 = cd
+		setvalue(so + ais, 16, 4.76853984E-7)
+		gg.toast("Switched to Normal")
+		setvalue(so + ais, 16, 4.76853984E-7)
     else
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 8682216
-      setvalue(so + py, 16, 4.76853984E-7)
-      --gg.toast("Online")
+		--sui1 = dcd
+		setvalue(so + ais, 16, -9010873890000)
+		gg.toast("Switched to Alone")
+		setvalue(so + ais, 16, -9010873890000)
     end
 end
 
 function suimenuc()
-	local suic = gg.choice({
-	  suic1 .. "Burn Candle",
-	  suic2 .. "Burn Plant",
-	  suic3 .. "Absord Wax"
-	}, nil, "Wax")
-	if suic == nil then
-	elseif suic == 1 then
-	    if suic1 == on then
-		  suic1 = off
+	pwr = gg.choice({
+	  "Burn Candle",
+	  "Burn Plant",
+	  "Absord Wax"
+	  },nil,'BURNING MODDS')
+	if pwr == nil then
+	  noselect()
+	else
+	    if pwr == 1 then
+			if suic1 == on then
+				suic1 = off
+			else
+				suic1 = on
+			end
+			if suic1 == on then
+				setvalue(so + bc, 16, -9010873890000)
+				gg.toast("Enabled - Burn Candle")
+				setvalue(so + bc, 16, -9010873890000)
+			else
+				setvalue(so + bc, 16, 1.19212586E-7)
+				gg.toast("Disabled - Burn Candle")
+				setvalue(so + bc, 16, 1.19212586E-7)
+			end
+
 	    else
-		  suic1 = on
-	    end
-	    if suic1 == on then
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 7721784
-		  setvalue(so + py, 16, -9010873890000)
-		  --gg.toast("Enabled - Burn Candle")
-	    else
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 7721784
-		  setvalue(so + py, 16, 1.19212586E-7)
-		  --gg.toast("Disabled - Burn Candle")
-	    end
-	elseif suic == 2 then
-	    if suic2 == on then
-		  suic2 = off
-	    else
-		  suic2 = on
-	    end
-	    if suic2 == on then
-		  gg.alert("If there are other players, it is difficult to burn due to the server")
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 6975592
-		  setvalue(so + py, 16, 1.41233962E-13)
-		  --gg.toast("Enabled - Burn Plant")
-	    else
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 6975592
-		  setvalue(so + py, 16, -1.8342321E-4)
-		  --gg.toast("Disabled - Burn Plant")
-	    end
-	elseif suic == 3 then
-	    if suic3 == on then
-		  suic3 = off
-	    else
-		  suic3 = on
-	    end
-	    if suic3 == on then
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 12916692
-		  setvalue(so + py, 16, 9.45302004E-21)
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 20998436
-		  setvalue(so + py, 16, 9999.9)
-		  --gg.toast("Enabled - Absord Wax")
-	    else
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 12916692
-		  setvalue(so + py, 16, 1.25233015E28)
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 20998436
-		  setvalue(so + py, 16, 3.5)
-		  --gg.toast("Disabled - Absord Wax")
-	    end
+			if pwr == 2 then
+				if suic2 == on then
+					suic2 = off
+				else
+					suic2 = on
+				end
+				if suic2 == on then
+					gg.alert("If there are other players, it is difficult to burn due to the server")
+					setvalue(so + bp, 16, 1.41233962E-13)
+					gg.toast("Enabled - Burn Plant")
+					setvalue(so + bp, 16, 1.41233962E-13)
+				else
+					setvalue(so + bp, 16, bp_v)
+					gg.toast("Disabled - Burn Plant")
+					setvalue(so + bp, 16, bp_v)
+				end
+
+			else
+				if suic3 == on then
+					suic3 = off
+				else
+					suic3 = on
+				end
+				if suic3 == on then
+					setvalue(so + aw1, 16, 9.45302004E-21)
+					setvalue(so + aw2, 16, 9999.9)
+					gg.toast("Enabled - Absord Wax")
+					setvalue(so + aw1, 16, 9.45302004E-21)
+					setvalue(so + aw2, 16, 9999.9)
+				else
+					setvalue(so + aw1, 16, 1.25233015E28)
+					setvalue(so + aw2, 16, 3.5)
+					gg.toast("Disabled - Absord Wax")
+					setvalue(so + aw1, 16, 1.25233015E28)
+					setvalue(so + aw2, 16, 3.5)
+				end
+			end
+		end
 	end
 end
 
@@ -6765,15 +7225,13 @@ function RemoveWind()
       suiwo1 = on
     end
     if suiwo1 == on then
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 7678172
-      setvalue(so + py, 16, 8.84170772E-21)
-      --gg.toast("Enabled - Remove Wind")
+		setvalue(so + rw, 16, 8.84170772E-21)
+		gg.toast("Enabled - Remove Wind Wall")
+		setvalue(so + rw, 16, 8.84170772E-21)
     else
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 7678172
-      setvalue(so + py, 16, 1.26007106E28)
-      --gg.toast("Disabled - Remove Wind")
+		setvalue(so + rw, 16, 1.26007106E28)
+		gg.toast("Disabled - Remove Wind Wall")
+		setvalue(so + rw, 16, 1.26007106E28)
     end
 end
 
@@ -6784,15 +7242,13 @@ function RemoveBarrier()
       suiwo2 = on
     end
     if suiwo2 == on then
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 6790380
-      setvalue(so + py, 16, -9010873890000)
-      --gg.toast("Enabled - Remove Barrier")
+		setvalue(so + rb, 16, -9010873890000)
+		gg.toast("Enabled - Remove Barrier")
+		setvalue(so + rb, 16, -9010873890000)
     else
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 6790380
-      setvalue(so + py, 16, 1.19211677E-7)
-      --gg.toast("Disabled - Remove Barrier")
+		setvalue(so + rb, 16, 1.19211677E-7)
+		gg.toast("Disabled - Remove Barrier")
+		setvalue(so + rb, 16, 1.19211677E-7)
     end
 end
 
@@ -6803,21 +7259,17 @@ function suikrills()
       suio2 = on
     end
     if suio2 == on then
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 5794336
-      setvalue(so + py, 16, 274877907000)
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 5794340
-      setvalue(so + py, 16, -61301799800000)
-      --gg.toast("Enabled - Immune krill attack")
+		setvalue(so + ik1, 16, 274877907000)
+		setvalue(so + ik2, 16, -61301799800000)
+		gg.toast("Enabled - Immune krill attack")
+		setvalue(so + ik1, 16, 274877907000)
+		setvalue(so + ik2, 16, -61301799800000)
     else
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 5794336
-      setvalue(so + py, 16, -1.27424102E34)
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 5794340
-      setvalue(so + py, 16, -2.87131023E-14)
-      --gg.toast("Disabled - Immune krill attack")
+		setvalue(so + ik1, 16, -1.27424102E34)
+		setvalue(so + ik2, 16, -2.87131023E-14)
+		gg.toast("Disabled - Immune krill attack")
+		setvalue(so + ik1, 16, -1.27424102E34)
+		setvalue(so + ik2, 16, -2.87131023E-14)
     end
 end
 
@@ -6834,15 +7286,13 @@ function suimenua()
 		  suia1 = on
 	    end
 	    if suia1 == on then
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 10568468
-		  setvalue(so + py, 16, 8.60598709E-21)
-		  --gg.toast("Enabled - Strong Jump")
+			setvalue(so + sj, 16, 8.60598709E-21)
+			gg.toast("Enabled - Strong Jump")
+			setvalue(so + sj, 16, 8.60598709E-21)
 	    else
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 10568468
-		  setvalue(so + py, 16, 8.9153793E-21)
-		  --gg.toast("Disabled - Strong Jump")
+			setvalue(so + sj, 16, 8.9153793E-21)
+			gg.toast("Disabled - Strong Jump")
+			setvalue(so + sj, 16, 8.9153793E-21)
 	    end
 	elseif suia == 2 then
 	    if suia2 == on then
@@ -6851,15 +7301,13 @@ function suimenua()
 		  suia2 = on
 	    end
 	    if suia2 == on then
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 10607524
-		  setvalue(so + py, 16, 8.71186621E-21)
-		  --gg.toast("Enabled - Fast Dive Speed")
+			setvalue(so + fd, 16, 8.71186621E-21)
+			gg.toast("Enabled - Fast Dive Speed")
+			setvalue(so + fd, 16, 8.71186621E-21)
 	    else
-		  so = gg.getRangesList("libBootloader.so")[1].start
-		  py = 10607524
-		  setvalue(so + py, 16, -0.04694215581)
-		  --gg.toast("Disabled - Fast Dive Speed")
+			setvalue(so + fd, 16, -0.04694215581)
+			gg.toast("Disabled - Fast Dive Speed")
+			setvalue(so + fd, 16, -0.04694215581)
 	    end
 	end
 end
@@ -6871,15 +7319,13 @@ function SIUfire()
       suio1 = on
     end
     if suio1 == on then
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 9710156
-      setvalue(so + py, 16, 1.8629458E-9)
-      --gg.toast("Enabled - Unlimited Fireworks")
+		setvalue(so + uf, 16, 1.8629458E-9)
+		gg.toast("Enabled - Unlimited Fireworks")
+		setvalue(so + uf, 16, 1.8629458E-9)
     else
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 9710156
-      setvalue(so + py, 16, 6.33927605E29)
-      --gg.toast("Disabled - Unlimited Fireworks")
+		setvalue(so + uf, 16, 6.33927605E29)
+		gg.toast("Disabled - Unlimited Fireworks")
+		setvalue(so + uf, 16, 6.33927605E29)
     end
 end
 
@@ -6890,15 +7336,13 @@ function iosphone()
 	   suio1 = on 
 	end
 	if suio1 == on then
-	  so=gg.getRangesList('libBootloader.so')[1].start
-	  py=9700044
-	  setvalue(so+py,16,8.71186621e-21)
-	  --gg.toast("Enabled - iOS Headphone")
+		setvalue(so + ih, 16, 8.71186621E-21)
+		gg.toast("Enabled - iOS Headphone")
+		setvalue(so + ih, 16, 8.71186621E-21)
 	else
-	  so=gg.getRangesList('libBootloader.so')[1].start
-	  py=0x56A1E8
-	  setvalue(so+py,16,8.84170772e-21)
-	  --gg.toast("Disabled - iOS Headphone")
+		setvalue(so + ih, 16, 8.84170772E-21)
+		gg.toast("Disabled - iOS Headphone")
+		setvalue(so + ih, 16, 8.84170772E-21)
 	end
 end
 
@@ -6909,15 +7353,13 @@ function SuiOxygen()
 	  suio3 = on 
 	end
 	if suio3 == on then
-	  so=gg.getRangesList('libBootloader.so')[1].start
-	  py=5788448
-	  setvalue(so+py,16,8.65892665e-21)
-	  --gg.toast("Enabled - Unlimited Oxygen")
+		setvalue(so + uo, 16, 8.65892665E-21)
+		gg.toast("Enabled - Unlimited Oxygen")
+		setvalue(so + uo, 16, 8.65892665E-21)
 	else
-	  so=gg.getRangesList('libBootloader.so')[1].start
-	  py=5788448
-	  setvalue(so+py,16,8.84111318e-21)
-	  --gg.toast("Disabled - Unlimited Oxygen")
+		setvalue(so + uo, 16, 8.84111318E-21)
+		gg.toast("Disabled - Unlimited Oxygen")
+		setvalue(so + uo, 16, 8.84111318E-21)
 	end
 end
 
@@ -6928,15 +7370,13 @@ function Suihearts()
 	  suio5 = on 
 	end
 	if suio5 == on then
-	  so=gg.getRangesList('libBootloader.so')[1].start
-	  py=5787580
-	  setvalue(so+py,16,8.71186621e-21)
-	 -- gg.toast("Enabled - Flashing Heart")
+		setvalue(so + fh, 16, 8.71186621E-21)
+		gg.toast("Enabled - Flashing Heart")
+		setvalue(so + fh, 16, 8.71186621E-21)
 	else
-	  so=gg.getRangesList('libBootloader.so')[1].start
-	  py=5787580
-	  setvalue(so+py,16,8.49522244e-21)
-	  --gg.toast("Disabled - Flashing Heart")
+		setvalue(so + fh, 16, 8.49522244E-21)
+		gg.toast("Disabled - Flashing Heart")
+		setvalue(so + fh, 16, 8.49522244E-21)
 	end
 end
 
@@ -6948,15 +7388,13 @@ function jetmode()
 		suiw1 = on
 	  end
 	if suiw1 == on then
-		so = gg.getRangesList("libBootloader.so")[1].start
-		py=10530588
-		gg.toast("Enabled - Jet Mode")
-		setvalue(so + py, 16, 9.55889916E-21)
+		setvalue(so + jm, 16, 9.55889916E-21)
+        gg.toast("Enabled - Jet Mode")
+        setvalue(so + jm, 16, 9.55889916E-21)
 	else
-		so = gg.getRangesList("libBootloader.so")[1].start
-		py=10530588
-		gg.toast("Disabled - Jet Mode")
-		setvalue(so + py, 16, 2.91466459E-20)
+		setvalue(so + jm, 16, 2.91466459E-20)
+        gg.toast("Disabled - Jet Mode")
+        setvalue(so + jm, 16, 2.91466459E-20)
 	end
 end
 
@@ -6967,24 +7405,32 @@ function Suiemote()
       suiu2 = on
     end
     if suiu2 == on then
-      gg.alert("Skin Unlock must be enabled")
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 11653068
-      setvalue(so + py, 16, 274878956000)
-      --gg.toast("Enabled - Emote level Unlock")
+		gg.alert("Unlock Clothes must be enabled")
+		setvalue(so + eu, 16, 274878956000)
+		gg.toast("Enabled - Unlock Emote Level")
+		setvalue(so + eu, 16, 274878956000)
     else
-      so = gg.getRangesList("libBootloader.so")[1].start
-      py = 11653068
-      setvalue(so + py, 16, -1.8326764E-4)
-      --gg.toast("Disabled - Emote level Unlock")
+		setvalue(so + eu, 16, eu_v)
+		gg.toast("Disabled - Unlock Emote Level")
+		setvalue(so + eu, 16, eu_v)
     end
 end
 
 function Readchats()
-	so = gg.getRangesList("libBootloader.so")[1].start
-	py = 6526064
-	setvalue(so + py, 16, 2.74878956e11)
-	--gg.toast("Read chats active")
+	if suiu2 == on then
+		suiu2 = off
+	else
+		suiu2 = on
+	end
+	if suiu2 == on then
+		setvalue(so + sch, 16, 274878956000)
+        gg.toast("Enabled - See Chat")
+        setvalue(so + sch, 16, 274878956000)
+	else
+		setvalue(so + sch, 16, 1.19210767E-7)
+        gg.toast("Disabled - See Chat")
+        setvalue(so + sch, 16, 1.19210767E-7)
+	end
 end
 
 function orange2()
@@ -7000,28 +7446,8 @@ function orange2()
     return array, bool;
 end
 
-sh = rwdz+0x62AC
-sh2 = rwdz+0x62B0
-
-function frzvalue(address, flags, value)
-    local tt = {}
-    tt[1] = {}
-    tt[1].address = address
-    tt[1].flags = flags
-    tt[1].value = value
-    tt[1].freeze = true
-    gg.addListItems(tt)
-end
-
-function ufrzvalue(address, flags, value)
-    local tt = {}
-    tt[1] = {}
-    tt[1].address = address
-    tt[1].flags = flags
-    tt[1].value = value
-    tt[1].freeze = false
-    gg.addListItems(tt)
-end
+sh = addr + 407040
+sh2 = addr + 407044
 
 glow1 = nsl
 glow2 = nsl
@@ -7035,27 +7461,27 @@ function glow()
       suio1 = on
     end
     if suio1 == on then
-		frzvalue(sh,16,999)
-		frzvalue(sh2,16,999)
-		glow1 = sl
-		glow2 = nsl
-		glow3 = nsl
-		gg.toast("Glowing Body - ON")
-		frzvalue(sh,16,999)
-		frzvalue(sh2,16,999)
+		frzvalue(sh, 16, 999)
+        frzvalue(sh2, 16, 999)
+        glow1 = sl
+        glow2 = nsl
+        glow3 = nsl
+        gg.toast("Glowing Body - Glow")
+        frzvalue(sh, 16, 999)
+        frzvalue(sh2, 16, 999)
     else
-		frzvalue(sh,16,0)
-		frzvalue(sh2,16,0)
-		glow1 = nsl
-		glow2 = nsl
-		glow3 = sl
-		frzvalue(sh,16,0)
-		frzvalue(sh2,16,0)
-		gg.toast("Glowing Body - Off")
-		ufrzvalue(sh,16,0)
-		ufrzvalue(sh2,16,0)
-		setvalue(sh,16,0)
-		setvalue(sh2,16,0)
+		frzvalue(sh, 16, 0)
+        frzvalue(sh2, 16, 0)
+        glow1 = nsl
+        glow2 = nsl
+        glow3 = sl
+        frzvalue(sh, 16, 0)
+        frzvalue(sh2, 16, 0)
+        gg.toast("Glowing Body - Off")
+        ufrzvalue(sh, 16, 0)
+        ufrzvalue(sh2, 16, 0)
+        setvalue(sh, 16, 0)
+        setvalue(sh2, 16, 0)
     end
 end
 
@@ -7199,7 +7625,7 @@ gx.add_menu({
 		{"[📶] Online (SUI)", {online}},
 		{"[📜] Read chats (SUI) {gxsign}", {Readchats}},
 		{"[👥] Friendsnode y chats {gxsign}", {node}},
-		{"[🌟] Body glow", {glow}},
+		{"[🌟] Body glow (SUI) {gxsign}", {glow}},
 		{"[👤] Emotes lvl 4 (SUI) {gxsign}", {Suiemote}},
 		{"[👤] Player view (SUI) {gxsign}", {SIUplayers}},
 		{"[✈️] JET MODE (SUI)", {jetmode}},
@@ -7210,7 +7636,7 @@ gx.add_menu({
 		{"[🧯] Unlimited Oxygen (SUI) {gxsign}", {SuiOxygen}},
 		{"[❤️] Flashing Heart (SUI) {gxsign}", {Suihearts}},
 		{"[🔋] Floating and charge", {wing_charge}},
-		{"[⚡] Energy (SUI)", {SUIenergy}},
+		{"[⚡] Energy (SUI)", {suimenuem}},
 		{"[😍] Wings power", {wingpower}},
 		{"[👔] Unlock clothes (Bian) {gxsign}", {clothes}},
 		{"[🎉] Unlock season (Bian) {gxsign}", {UnlockSeason}},
