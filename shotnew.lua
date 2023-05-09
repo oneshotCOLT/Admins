@@ -7773,7 +7773,8 @@ gx.add_menu({
 		{"[🌎] World", {gx.open_menu, {"worldmenu"}}},
 		{"[💫] magic", {lolol}},
 		{"[👤] Skykid mods", {gx.open_menu, {"Fun"}}},
-		{"[🌟] Ultra rapid farm!!", {ydks}},				
+		{"[🌟] Ultra rapid farm!!", {ydks}},
+		{"[📜] Developer mod", {gx.open_menu, {"Developer"}}},			
 	},
 	type = "choice"
 })
