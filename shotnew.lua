@@ -7765,23 +7765,26 @@ gx.add_menu({
 	title = "ONE-SHOT",
 	name = "main",
 	menu = {
-		{"⬆️  Break Wall: {gx:settings.wdistance}", {pmove, {"{gx:settings.wdistance}"}}},
-		{"🚀  Rapid Farm", {rapidfarm}},
-		{"🌾  Farming Mode", {gx.open_menu, {"farmmenu"}}},
-		{"🌎  Go To", {_goto}},
-		{"🌍  World", {gx.open_menu, {"worldmenu"}}},
-		{"✨  Magic", {lolol}},
-		{"👤  Skykid Mods", {gx.open_menu, {"Fun"}}},
-		{"⚡️  Ultra Rapid Farm", {ydks}},
-		{"🛠️  Developer Mode", {gx.open_menu, {"Developer"}}}
+		{"[⬆️] Break wall: {gx:settings.wdistance}", {pmove, {"{gx:settings.wdistance}"}}},
+		{"[🚀] Rapid Farm", {rapidfarm}},
+		{"[👥] Farming mode ", {gx.open_menu, {"farmmenu"}}},
+		{"[🌎] Go to", {_goto}},
+		{"[🌎] World", {gx.open_menu, {"worldmenu"}}},
+		{"[💫] magic", {lolol}},
+		{"[👤] Skykid mods", {gx.open_menu, {"Fun"}}},
+		{"[🌟] Ultra rapid farm!!", {ydks}},
+		{"[📜] Developer mod", {gx.open_menu, {"Developer"}}},			
 	},
 	type = "choice",
-	color = 0x22A7F0, -- color de fondo del menú
-	title_color = 0xFFFFFF, -- color del título del menú
-	item_color = 0xFFFFFF, -- color del texto de los ítems del menú
-	hover_color = 0x1B4F72, -- color de fondo al pasar el cursor sobre los ítems del menú
-	hover_title_color = 0xFFFFFF -- color del título al pasar el cursor sobre los ítems del menú
+	colors = {
+		background = 0xFFFFFFFF,
+		title = 0xFF303F9F,
+		text = 0xFF212121,
+		selected = 0xFFE0E0E0,
+		highlight = 0xFF3949AB
+	}
 })
+
 
 
 
